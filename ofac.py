@@ -29,6 +29,8 @@ class ScrapingOFAC:
             ftp.login()
             ftp.cwd(values.OFAC_FTP_DIR)
 
+            ftp.retrlines("LIST")
+
             with open(self.path, "wb") as fp:
                 ftp.retrbinary(f"RETR {self.file}", fp.write)
 
